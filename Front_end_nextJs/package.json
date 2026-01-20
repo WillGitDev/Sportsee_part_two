@@ -1,0 +1,30 @@
+{
+  "name": "sportsee_part_one",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.1",
+    "@recharts/devtools": "^0.0.5",
+    "date-fns": "^4.1.0",
+    "js-cookie": "^3.0.5",
+    "next": "16.0.8",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "recharts": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-plugin-react-compiler": "1.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.8",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4"
+  }
+}

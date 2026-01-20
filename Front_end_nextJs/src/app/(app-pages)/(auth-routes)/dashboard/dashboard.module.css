@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.containerIaLaunch {
+    height: 100px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.textIaLaunch {
+    color: var(--color-darkblue);
+}
+
+.logoIa {
+    margin-right: 10px;
+}
+
+.buttonIaLaunch {
+    height: 50px;
+    width: 270px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.contentName {
+    margin-left: 20px;
+}
+
+.name {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.nameInfo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    height: 170px;
+}
+
+.containerImg {
+    overflow: hidden;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.imgNext {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.imgNext:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.containerDistance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 370px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.textDistance {
+    font-size: 14px;
+    color: var(--color-textgray);
+    font-weight: 400;
+}
+
+.nbrDistance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: var(--color-darkblue);
+    color: white;
+    height: 100%;
+    width: 45%;
+}
+
+.containerGraph {
+    display: flex;
+    gap: 20px;
+}

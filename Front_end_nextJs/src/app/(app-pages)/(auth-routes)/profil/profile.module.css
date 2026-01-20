@@ -1,0 +1,12 @@
+.container {
+    width: 100vw;
+    display: flex;
+    gap: 60px;
+}
+
+.infoUser {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 30%;
+}

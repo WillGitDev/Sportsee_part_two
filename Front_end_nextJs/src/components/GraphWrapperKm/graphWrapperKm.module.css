@@ -1,0 +1,41 @@
+.containerGraph {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.title {
+    color: #0b23f4;
+    font-size: 22px;
+}
+
+.headerGraph {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    height: 100px;
+    margin: 0 40px;
+    margin-top: 20px;
+}
+
+.containerNav {
+    display: flex;
+    width: 200px;
+    font-size: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekLabel {
+    display: flex;
+    justify-content: center;
+    width: 250px;
+}
+
+.containerTitleNav {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,13 @@
+.container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-background);
+}
+
+.title {
+  font-size: 200px;
+  color: var(--color-darkblue);
+}

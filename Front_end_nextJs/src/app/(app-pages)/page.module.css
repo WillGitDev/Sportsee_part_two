@@ -1,0 +1,95 @@
+.contentContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    padding-top: 50px;
+    padding-left: 150px;
+}
+
+.textLogo {
+    display: flex;
+    color: var(--color-darkblue);
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.imgContainer {
+    position: relative;
+    width: 60%;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    bottom: 40px;
+    height: 60px;
+    width: 26%;
+    padding: 0 20px;
+    background-color: white;
+    border-radius: 50px;
+    color: var(--color-darkblue);
+    font-size: 12px;
+}
+
+.formContainer {
+    height: 620px;
+    width: 400px;
+    background-color: white;
+    border-radius: 30px;
+}
+
+.title {
+    color: var(--color-darkblue);
+}
+
+.connectionText {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.label {
+    color: var(--color-textgray);
+}
+
+.inputText {
+    width: 320px;
+    height: 60px;
+    border: 1px solid var(--color-textgray);
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+.submit {
+    height: 50px;
+    width: 320px;
+}
+
+.img {
+    object-fit: cover;
+    object-position: top center;
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.form {
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.textForgot {
+    font-weight: 400;
+}

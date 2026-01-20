@@ -1,0 +1,86 @@
+.containerGraphRun {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.containerGraph {
+    padding: 40px;
+    width: 40%;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.span {
+    color: var(--color-darkblue);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.h3 {
+    color: var(--color-textlightblue);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.subtitle {
+    color: var(--color-textgray);
+}
+
+.infoContainer {
+    width: 60%;
+}
+.activityTime {
+    background-color: white;
+    border-radius: 10px;
+    height: 100px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.distance {
+    background-color: white;
+    border-radius: 10px;
+    height: 100px;
+    padding: 20px;
+}
+
+.activityNumber {
+    color: #0b23f4;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.minutesTxt {
+    color: #b6bdfc;
+    font-size: 16px;
+}
+
+.distanceNumber {
+    color: #f4320b;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.kilometerText {
+    color: #fcc1b6;
+    font-size: 16px;
+}
+
+.titleInfo {
+    color: var(--color-textgray);
+}
+
+.thisWeek {
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 5px;
+    margin-top: 40px;
+}
+
+.currentWeek {
+    margin-bottom: 40px;
+}
