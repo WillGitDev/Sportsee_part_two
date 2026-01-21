@@ -49,3 +49,9 @@
 .activeLink {
     color: var(--color-darkblue);
 }
+
+.buttonNoStyle {
+    border: none;
+    background-color: transparent;
+    font-size: inherit;
+}

@@ -16,7 +16,7 @@ export default function UserProvider({ children }) {
     const endWeek = "2025-12-31";
     const urlUserInfo = "/api/user-info";
     const urlUserActivity = "/api/user-activity";
-    debugger;
+
     const {
         dataUserInfo,
         isLoading: loadInfo,

@@ -21,7 +21,7 @@ export default function GraphRunWrapper({ userActivity }) {
     console.log("La semaine trouvée", weekFound);
 
     const hasData = weekFound.length > 0;
-    //debugger;
+
     const activity = hasData
         ? weekFound.reduce((acc, element) => {
               return element.isMissing ? acc - 1 : acc;

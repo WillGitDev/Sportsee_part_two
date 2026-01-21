@@ -8,12 +8,16 @@ import Loading from "@components/Loading";
 import ErrorBox from "@components/ErrorBox";
 import { useContext } from "react";
 import { userContext } from "@/contexts/UserContext";
+import { modalContext } from "@/contexts/ModalContext";
+import Modal from "@components/Modal";
 
 export default function ProfilPage() {
     // const userInfo = userInfoMapper(data.apiUserInfo);
     // const userActivity = userActivityMapper(data.apiUserActivity);
     const { userData } = useContext(userContext);
     const { userInfo, userActivity, isLoading, isError } = userData;
+    const { isOpen, setIsOpen } = useContext(modalContext);
+
     if (isLoading) {
         return <Loading isLoading={true} />;
     }
@@ -28,6 +32,7 @@ export default function ProfilPage() {
     console.log(`Le fichier userActivity contient : `, userActivity);
     return (
         <div className={styles.container}>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
             <div className={styles.infoUser}>
                 <UserNameInfo
                     firstName={userInfo.firstName}

@@ -5,10 +5,13 @@ import Link from "next/link";
 import { logout } from "@/cookies/auth.js";
 import { useRouter, usePathname } from "next/navigation";
 import Icone from "@components/Icone";
+import { useContext } from "react";
+import { modalContext } from "@/contexts/ModalContext";
 
 export default function Header() {
     const router = useRouter();
     const pathname = usePathname();
+    const { isOpen, setIsOpen } = useContext(modalContext);
     function handleLogout() {
         logout();
         router.push("/");
@@ -33,7 +36,18 @@ export default function Header() {
                             Dashboard
                         </Link>
                     </li>
-                    <li className={styles.li}>Coach</li>
+                    <li className={styles.li}>
+                        <button
+                            className={
+                                isOpen
+                                    ? `${styles.activeLink} ${styles.buttonNoStyle}`
+                                    : styles.buttonNoStyle
+                            }
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
+                            Coach
+                        </button>
+                    </li>
                     <li className={styles.li}>
                         <Link
                             href="/profil"
