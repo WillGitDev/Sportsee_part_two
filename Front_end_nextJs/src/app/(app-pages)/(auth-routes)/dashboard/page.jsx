@@ -7,7 +7,7 @@ import GraphWrapperKm from "@components/GraphWrapperKm";
 import GraphRunWrapper from "@components/GraphRunWrapper";
 import { useContext, useEffect } from "react";
 import { userContext } from "@/contexts/UserContext";
-import { modalContext } from "@/contexts/ModalContext";
+
 import Loading from "@components/Loading";
 import ErrorBox from "@components/ErrorBox";
 import HandIcone from "@components/HandIcone";
@@ -19,7 +19,7 @@ export default function Dashboard() {
     // const heartRate = userHeartRateMapper(data.apiUserActivity);
     // const kmData = userKmMapper(data.apiUserActivity);
     const { userData } = useContext(userContext);
-    const { isOpen, setIsOpen } = useContext(modalContext);
+
     const {
         userInfo,
         userActivity,
@@ -48,7 +48,7 @@ export default function Dashboard() {
 
     return (
         <div className={styles.container}>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Modal />
             <div className={styles.containerIaLaunch}>
                 <p className={styles.textIaLaunch}>
                     <img

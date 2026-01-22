@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-bottom: 400px;
 }
 
 .title {
@@ -33,6 +33,19 @@
     text-align-last: center;
 }
 
+.textAreaWrapper {
+    position: relative;
+    height: 130px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.iconeAiOrange {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
 .chatInput {
     resize: none;
     font-family: inherit;
@@ -40,7 +53,7 @@
     width: 100%;
     border: 1px solid var(--color-textgray);
     border-radius: 10px;
-    padding: 10px 80px 10px 20px;
+    padding: 15px 80px 10px 45px;
 }
 
 .form {
@@ -56,7 +69,21 @@
 }
 
 .responseContainer {
-    height: 610px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 550px;
+    scroll-behavior: smooth;
+    margin-top: 30px;
+    /* Suppression de la scroll bar pour Chrome, 
+    Safari, edge, Firefox, Explorer */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .arrowUp {
