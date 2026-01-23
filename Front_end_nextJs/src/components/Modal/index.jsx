@@ -10,6 +10,8 @@ import Image from "next/image";
 import MessageChat from "@components/MessageChat";
 import useIa from "@/hooks/useIa";
 import LoadPoints from "@components/LoadPoints";
+import ErrorBox from "@components/ErrorBox";
+import messageMapper from "@/services/mappers/messageMapper";
 
 export default function Modal() {
     const { userData } = useContext(userContext);
@@ -17,7 +19,8 @@ export default function Modal() {
     const dialogRef = useRef(null);
     const [promptUser, setPromptUser] = useState("");
     const [messages, setMessages] = useState([]);
-    const { fetchIa, isLoading } = useIa();
+
+    const { fetchIa, isLoading, isError } = useIa();
     const logoIaOrange = "/icone/icone_ai_orange.png";
 
     useEffect(() => {
@@ -30,26 +33,27 @@ export default function Modal() {
 
     async function handleChat(e) {
         e.preventDefault();
+        if (!promptUser.trim() || isLoading) return;
         const messageUser = {
             role: "user",
             prompt: promptUser,
             image: userData.userInfo.profilePicture,
         };
         setMessages((prev) => [...prev, messageUser]);
-
-        const responseAi = await fetchIa(promptUser);
+        console.log("le message mapper est : ", messageMapper(messages));
+        const responseAi = await fetchIa(promptUser, messageMapper(messages));
         setPromptUser("");
         if (responseAi) {
             const contentAi = {
-                role: "ai",
+                role: "assistant",
                 prompt: responseAi,
                 image: logoIaOrange,
             };
             setMessages((prev) => [...prev, contentAi]);
         } else {
             const contentAi = {
-                role: "ai",
-                prompt: "Erreur",
+                role: "assistant",
+                prompt: "Désoler une erreur est survenue",
                 image: logoIaOrange,
             };
             setMessages((prev) => [...prev, contentAi]);
@@ -62,10 +66,7 @@ export default function Modal() {
             handleChat(e);
         }
     }
-    console.log(
-        "Test de la récupération de l'image : ",
-        userData.userInfo.profilePicture,
-    );
+
     return (
         <dialog
             ref={dialogRef}
@@ -89,6 +90,12 @@ export default function Modal() {
                 <div className={styles.contentModalBox}>
                     <div className={styles.responseContainer}>
                         {isLoading && <LoadPoints />}
+                        {isError && (
+                            <ErrorBox
+                                isError="true"
+                                text="Une erreur est survenue"
+                            />
+                        )}
                         {messages
                             .slice()
                             .reverse()
@@ -140,7 +147,7 @@ export default function Modal() {
                             <button
                                 type="submit"
                                 className={styles.submitBtn}
-                                disabled={!promptUser.trim()}
+                                disabled={!promptUser.trim() || isLoading}
                             >
                                 <FontAwesomeIcon
                                     icon={faArrowUp}

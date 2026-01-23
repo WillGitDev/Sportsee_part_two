@@ -7,6 +7,7 @@ export default function LoadPoints() {
             <div className={styles.containerLogo}>
                 <Image
                     src="/icone/icone_ai_orange.png"
+                    alt="Icone d'étoiles"
                     height={17}
                     width={15}
                 />
