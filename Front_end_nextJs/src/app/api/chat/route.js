@@ -37,6 +37,7 @@ export async function POST(request) {
             _ Recommandation de consultation.
             ### PRÉPARATION D'OBJECTIF ###
             Analyse le niveau actuel + objectif + délai.
+            Adapte tes explications en fonction du niveau de l'élève (par rapport au ses performances).
             Évalue la faisabilité et propose : 
             _ Réalisme de l'objectif selon les données actuelles.
             _ Étapes intermédiaires recommandées.
