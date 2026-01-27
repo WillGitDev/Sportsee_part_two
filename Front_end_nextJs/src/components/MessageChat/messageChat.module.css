@@ -13,6 +13,7 @@
 
 .content {
     line-height: 1.5;
+    list-style-position: inside;
 }
 
 .content p {
@@ -21,6 +22,10 @@
 
 .content p:last-child {
     margin-bottom: 0;
+}
+
+.content li {
+    margin-bottom: 15px;
 }
 
 .contentUser {
@@ -66,7 +71,7 @@
 .chat {
     border-radius: 20px;
     padding: 14px 20px;
-    max-width: 75%;
+    max-width: 120%;
     min-width: 80px;
 }
 

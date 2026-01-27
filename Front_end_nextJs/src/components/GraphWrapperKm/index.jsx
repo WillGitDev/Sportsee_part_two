@@ -17,7 +17,6 @@ export default function GraphWrapperKm({ kmData }) {
     const allWeeks = useMemo(() => {
         return dataByWeeks(kmData, true);
     }, [kmData]);
-    //console.log("Le allWeeks", allWeeks);
     const fourWeeksMap = useMemo(() => {
         return allWeeks.map((week) => {
             const activeDays = week.filter((day) => day.km > 0);
@@ -42,7 +41,6 @@ export default function GraphWrapperKm({ kmData }) {
     const fourWeeks = useMemo(() => {
         return splitFourWeeks(fourWeeksMap);
     }, [allWeeks]);
-    //console.log("Les quatres: ", fourWeeks);
 
     const [weekOffset, setWeekOffset] = useState(0);
 

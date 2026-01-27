@@ -7,6 +7,7 @@ import GraphWrapperKm from "@components/GraphWrapperKm";
 import GraphRunWrapper from "@components/GraphRunWrapper";
 import { useContext, useEffect } from "react";
 import { userContext } from "@/contexts/UserContext";
+import { modalContext } from "@/contexts/ModalContext";
 
 import Loading from "@components/Loading";
 import ErrorBox from "@components/ErrorBox";
@@ -19,7 +20,7 @@ export default function Dashboard() {
     // const heartRate = userHeartRateMapper(data.apiUserActivity);
     // const kmData = userKmMapper(data.apiUserActivity);
     const { userData } = useContext(userContext);
-
+    const { isOpen, setIsOpen } = useContext(modalContext);
     const {
         userInfo,
         userActivity,
@@ -59,7 +60,10 @@ export default function Dashboard() {
                     Posez vos questions sur votre programme, vos performances ou
                     vos objectifs.
                 </p>
-                <button className={`${styles.buttonIaLaunch} buttonAnimate`}>
+                <button
+                    className={`${styles.buttonIaLaunch} buttonAnimate`}
+                    onClick={() => setIsOpen(true)}
+                >
                     Lancer une conversation
                 </button>
             </div>
@@ -90,9 +94,14 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className={styles.containerGraph}>
-                <GraphWrapperKm kmData={kmData} />
-                <GraphWrapper heartRate={heartRate} />
+            <div className={styles.graph}>
+                <h2 className={styles.titleGraph}>
+                    Vos dernières performances
+                </h2>
+                <div className={styles.containerGraph}>
+                    <GraphWrapperKm kmData={kmData} />
+                    <GraphWrapper heartRate={heartRate} />
+                </div>
             </div>
             <div className={styles.thisWeekContainer}>
                 <GraphRunWrapper userActivity={activitiesInfo} />

@@ -99,3 +99,19 @@
     border-radius: 10px;
     background-color: var(--color-darkblue);
 }
+
+.suggestion {
+    border: none;
+    background: #f2f3ff;
+    min-width: 250px;
+    min-height: 70px;
+    padding: 30px 10px;
+    border-radius: 10px;
+    color: var(--color-textgray);
+}
+
+.containerSuggestions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}

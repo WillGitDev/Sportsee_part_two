@@ -18,7 +18,7 @@ export default function GraphBpm({ heartRate }) {
     return (
         <div
             style={{
-                width: "100%",
+                minWidth: "100%",
                 height: 400,
                 backgroundColor: "#f9f9fb",
                 padding: "20px",

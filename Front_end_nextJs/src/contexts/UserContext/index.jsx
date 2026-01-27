@@ -36,7 +36,6 @@ export default function UserProvider({ children }) {
         isLoading: true,
         isError: false,
     });
-    console.log(`Le token : ${token}`);
 
     useEffect(() => {
         if (!loadInfo && !loadActivity) {

@@ -14,13 +14,16 @@ export async function POST(request) {
             content: `
             ### ROLE ###
             Tu es coach de SportSee, expert en accompagnement sur la nutrition et le sport.
+            Répond uniquement à la dernière questions de l'élève en utilisant le contexte et l'historique.
             ### TON ###
-            Tu es bienveillant et encourageant. N'utilise pas de termes trop technique.
-            ### DONNÉES DE L'ELEVE ###
+            Tu es bienveillant et encourageant. N'utilise pas de termes trop technique. Et ne répète pas les questions.
+            ### RÉPONSE ###
+            _ Ne te répète pas.
+            ### DONNÉES DE L'ÉLÈVE ###
             _ l'age de l'élève est : ${infoUser.age} ans.
             _ le poids de l'élève est : ${infoUser.weight} kilos.
             _ la taille de l'élève est : ${infoUser.height}
-            _ la genre de l'élève est : ${infoUser.gender}.
+            _ le genre de l'élève est : ${infoUser.gender}.
             _ les dix derniéres courses de l'élève sont : ${JSON.stringify(dataCourses)}.
             ### NUTRITION PRÉ-COURSE ###
             Analyse les données récentes et génère une réponse personnalisée incluant:
@@ -47,7 +50,7 @@ export async function POST(request) {
             _ Structure des réponses courts.
             _ Soit aéré et lisible.
             ### CONTRAINTES ET LONGUEURS ###
-            _ Ta réponse doit-être concise et ne pas dépasser 500 caractères.
+            _ Ta réponse doit-être concise et ne pas dépasser 475 tokens.
             ### LIMITES ET GARDE-FOUS ###
             _ Ne remplace jamais un avis médical professionnel.
             _ Redigire vers un médecin pour les douleurs persistantes.
@@ -64,8 +67,6 @@ export async function POST(request) {
             return NextResponse.json({ error: "Format incorrect" });
         }
 
-        console.log("STRUCTURE ENVOYEE : ", JSON.stringify(fullMessages));
-        console.log("Le dernier message lastmessages : ", lastMessages);
         const response = await fetch(
             `${API_MISTRAL_BASE_URL}${API_MISTRAL_CHAT_URL}`,
             {
@@ -78,22 +79,46 @@ export async function POST(request) {
                     model: "open-mistral-nemo",
                     messages: fullMessages,
                     max_tokens: 500,
-                    temperature: 0.5,
+                    temperature: 0.7,
                 }),
                 signal: AbortSignal.timeout(10000), // 10 secondes.
             },
         );
         if (!response.ok) {
             const errorData = await response.json();
-            console.error("Erreur : ", errorData);
-            return NextResponse.json(errorData, { status: response.status });
+
+            switch (response.status) {
+                case 401:
+                    return NextResponse.json(
+                        {
+                            error: "Votre accès est désactiver contacter le support.",
+                        },
+                        { status: 401 },
+                    );
+                case 429:
+                    return NextResponse.json(
+                        {
+                            error: "Limite de réponse dépassée réessayer ultérieurement.",
+                        },
+                        { status: 429 },
+                    );
+                case 500:
+                    return NextResponse.json(
+                        { error: "Erreur du serveur" },
+                        { status: 500 },
+                    );
+                default:
+                    return NextResponse.json(
+                        { error: "Une erreur inattendue est survenue" },
+                        { status: response.status },
+                    );
+            }
         }
 
         const data = await response.json();
-        console.log("La réponse de Mistral : ", data);
+
         return NextResponse.json(data);
     } catch (error) {
-        console.error("Erreur du chat : ", error);
         return NextResponse.json({ error: "Erreur serveur" }, { status: 500 });
     }
 }

@@ -16,7 +16,6 @@ export default function GraphWrapper({ heartRate }) {
     const allWeeks = useMemo(() => {
         return dataByWeek(heartRate);
     }, [heartRate]);
-    //console.log("Les données de la fonction dataByWeeks", allWeeks);
     const [weekOffset, setWeekOffset] = useState(0);
 
     const currentWeekData = allWeeks[weekOffset] || [];

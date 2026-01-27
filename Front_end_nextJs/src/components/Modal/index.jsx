@@ -22,6 +22,7 @@ export default function Modal() {
 
     const { fetchIa, isLoading, isError } = useIa();
     const logoIaOrange = "/icone/icone_ai_orange.png";
+    const [messageError, setMessageError] = useState(null);
 
     useEffect(() => {
         if (isOpen) {
@@ -40,22 +41,27 @@ export default function Modal() {
             image: userData.userInfo.profilePicture,
         };
         setMessages((prev) => [...prev, messageUser]);
-        console.log("le message mapper est : ", messageMapper(messages));
-        const responseAi = await fetchIa(promptUser, messageMapper(messages));
         setPromptUser("");
-        if (responseAi) {
+        const responseAi = await fetchIa(promptUser, messageMapper(messages));
+
+        if (!isError) {
             const contentAi = {
                 role: "assistant",
-                prompt: responseAi,
+                prompt: responseAi.choices[0].message.content,
                 image: logoIaOrange,
             };
             setMessages((prev) => [...prev, contentAi]);
-        } else {
+        }
+        if (isError) {
+            const errorText =
+                responseAi?.error || "Une erreur innatendue est survenue";
             const contentAi = {
                 role: "assistant",
-                prompt: "Désoler une erreur est survenue",
+                prompt: errorText,
                 image: logoIaOrange,
             };
+            setMessageError(errorText);
+
             setMessages((prev) => [...prev, contentAi]);
         }
     }
@@ -90,12 +96,8 @@ export default function Modal() {
                 <div className={styles.contentModalBox}>
                     <div className={styles.responseContainer}>
                         {isLoading && <LoadPoints />}
-                        {isError && (
-                            <ErrorBox
-                                isError="true"
-                                text="Une erreur est survenue"
-                            />
-                        )}
+                        <ErrorBox isError={isError} text={messageError} />
+
                         {messages
                             .slice()
                             .reverse()
@@ -111,7 +113,7 @@ export default function Modal() {
                             })}
                         <div className={styles.containerTitle}>
                             <h2 className={styles.title}>
-                                Posez vos questions sur votre porgramme,
+                                Posez vos questions sur votre programme,
                                 <br /> vos performances ou vos objectifs
                             </h2>
                         </div>
@@ -155,6 +157,38 @@ export default function Modal() {
                                 />
                             </button>
                         </form>
+                    </div>
+                    <div className={styles.containerSuggestions}>
+                        <button
+                            className={styles.suggestion}
+                            onClick={() =>
+                                setPromptUser(
+                                    "Comment améliorer mon endurance ?",
+                                )
+                            }
+                        >
+                            Comment améliorer mon endurance ?
+                        </button>
+                        <button
+                            className={styles.suggestion}
+                            onClick={() =>
+                                setPromptUser(
+                                    "Que signifie mon score de récupération ?",
+                                )
+                            }
+                        >
+                            Que signifie mon score de récupération ?
+                        </button>
+                        <button
+                            className={styles.suggestion}
+                            onClick={() =>
+                                setPromptUser(
+                                    "Peux-tu m'expliquer mon dernier graphique ?",
+                                )
+                            }
+                        >
+                            Peux-tu m'expliquer mon dernier graphique ?
+                        </button>
                     </div>
                 </div>
             </div>

@@ -10,15 +10,12 @@ import { fr } from "date-fns/locale";
 
 export default function GraphRunWrapper({ userActivity }) {
     const allWeeks = dataByWeek(userActivity.activities);
-    console.log("Les données :", allWeeks);
 
-    // const targetDate = "2025-09-03";
     const targetDate = format(startOfToday(), "yyyy-MM-dd");
-    //console.log(targetDate);
+
     const weekFound =
         allWeeks.find((week) => week.some((day) => day.date === targetDate)) ||
         [];
-    console.log("La semaine trouvée", weekFound);
 
     const hasData = weekFound.length > 0;
 

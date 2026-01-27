@@ -24,7 +24,6 @@ export default function Home() {
         setToken(getToken());
     }
 
-    console.log(userId, token, isLoading, error);
     return (
         <>
             {isAuthorized && (
