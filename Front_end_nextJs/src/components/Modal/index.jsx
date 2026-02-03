@@ -33,6 +33,7 @@ export default function Modal() {
     }, [isOpen]);
 
     async function handleChat(e) {
+        setMessageError("Une erreur inconnue s'est produite");
         e.preventDefault();
         if (!promptUser.trim() || isLoading) return;
         const messageUser = {
@@ -44,15 +45,17 @@ export default function Modal() {
         setPromptUser("");
         const responseAi = await fetchIa(promptUser, messageMapper(messages));
 
-        if (!isError) {
+        if (responseAi && !responseAi.error && responseAi.choices?.length > 0) {
             const contentAi = {
                 role: "assistant",
-                prompt: responseAi.choices[0].message.content,
+                prompt:
+                    responseAi.choices[0].message?.content ??
+                    "erreur inatendue",
                 image: logoIaOrange,
             };
             setMessages((prev) => [...prev, contentAi]);
-        }
-        if (isError) {
+        } else {
+            setMessageError(responseAi?.error);
             const errorText =
                 responseAi?.error || "Une erreur innatendue est survenue";
             const contentAi = {

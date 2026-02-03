@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { logout } from "@/cookies/auth";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -28,6 +29,10 @@ export default function useUserActivity(url, token, startWeek, endWeek) {
                         },
                     },
                 );
+                if (response.status === 403) {
+                    logout();
+                    return;
+                }
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP : ${response.status}`);
                 }

@@ -20,6 +20,7 @@ export async function POST(request) {
             ### RÉPONSE ###
             _ Ne te répète pas.
             ### DONNÉES DE L'ÉLÈVE ###
+            Donnée issue des graphiques : 
             _ l'age de l'élève est : ${infoUser.age} ans.
             _ le poids de l'élève est : ${infoUser.weight} kilos.
             _ la taille de l'élève est : ${infoUser.height}
@@ -51,7 +52,7 @@ export async function POST(request) {
             _ Structure des réponses courts.
             _ Soit aéré et lisible.
             ### CONTRAINTES ET LONGUEURS ###
-            _ Ta réponse doit-être concise et ne pas dépasser 475 tokens.
+            _ Ta réponse doit-être concise et ne pas dépasser 1300 caractères.
             ### LIMITES ET GARDE-FOUS ###
             _ Ne remplace jamais un avis médical professionnel.
             _ Redigire vers un médecin pour les douleurs persistantes.
@@ -77,17 +78,16 @@ export async function POST(request) {
                     Authorization: `Bearer ${API_MISTRAL_KEY}`,
                 },
                 body: JSON.stringify({
-                    model: "open-mistral-nemo",
+                    //model: "open-mistral-nemo",
+                    model: "mistral-large-2512",
                     messages: fullMessages,
-                    max_tokens: 500,
+                    max_tokens: 700,
                     temperature: 0.7,
                 }),
-                signal: AbortSignal.timeout(10000), // 10 secondes.
+                signal: AbortSignal.timeout(20000), // 20 secondes pour les modèles plus performant.
             },
         );
         if (!response.ok) {
-            const errorData = await response.json();
-
             switch (response.status) {
                 case 401:
                     return NextResponse.json(

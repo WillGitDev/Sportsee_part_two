@@ -13,6 +13,7 @@ export function setCookie(token, userId) {
 
 export function logout() {
     Cookies.remove("auth_token", { path: "/" });
+    window.location.reload();
 }
 
 export function getToken() {

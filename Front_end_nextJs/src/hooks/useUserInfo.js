@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { logout } from "@/cookies/auth";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -22,6 +23,12 @@ export default function useUserInfo(url, token) {
                     method: "GET",
                     headers: { Authorization: `Bearer ${token}` },
                 });
+                if (response.status === 403) {
+                    // Le token est périmé on efface le cookie ce qui va
+                    // diriger l'utilisateur sur la page de connection.
+                    logout();
+                    return;
+                }
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP: ${response.status}`);
                 }
