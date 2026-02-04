@@ -15,10 +15,7 @@ export default function useIa() {
 
     async function fetchIa(prompt, messages) {
         setIsLoading(true);
-        console.log(
-            "Début de la fonction fetchIa isLoading est initialisée à : ",
-            isLoading,
-        );
+
         setIsError(false);
         setError(null);
 
@@ -66,10 +63,6 @@ export default function useIa() {
             return null;
         } finally {
             setIsLoading(false);
-            console.log(
-                "Le finally dans fetchIa isLoading est à : ",
-                isLoading,
-            );
         }
     }
     return { isLoading, isError, error, fetchIa };
